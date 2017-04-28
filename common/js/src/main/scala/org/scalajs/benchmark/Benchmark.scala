@@ -14,6 +14,9 @@ import js.annotation.JSExport
 
 import org.scalajs.benchmark.dom._
 
+import akka.actor._
+
+case object Done
 /** `Benchmark` base class based on the deprecated scala.testing.Benchmark.
  *
  *  The `run` method has to be defined by the user, who will perform the
@@ -27,8 +30,9 @@ import org.scalajs.benchmark.dom._
 abstract class Benchmark extends js.JSApp {
 
   def main(): Unit = {
-    val status = report()
-    println(s"$prefix: $status")
+    report({status: String => {
+      println(s"$prefix: $status")
+    }})
   }
 
   @JSExport
@@ -56,15 +60,14 @@ abstract class Benchmark extends js.JSApp {
       statusText.textContent = "Running ..."
 
       js.timers.setTimeout(10) {
-        val status = {
-          try {
-            report()
-          } catch {
-            case th: Throwable => th.toString()
-          }
+        try {
+          report(status => {
+            statusText.textContent = status
+            runButton.enabled = true
+          })
+        } catch {
+          case th: Throwable => th.toString()
         }
-        statusText.textContent = status
-        runButton.enabled = true
       }
     }
   }
@@ -75,25 +78,36 @@ abstract class Benchmark extends js.JSApp {
    *  @see setUp
    *  @see tearDown
    */
-  def run(): Unit
+  def run(system: ActorSystem, ref: ActorRef): Unit
 
   /** Run the benchmark the specified number of milliseconds and return
    *  the average execution time in microseconds.
    */
-  def runBenchmark(timeMinimum: Long, runsMinimum: Int): Double = {
+  def runBenchmark(timeMinimum: Long, runsMinimum: Int)(f: Double => Unit): Unit = {
+    val system = ActorSystem()
+
     var runs = 0
     val startTime = Platform.currentTime
     var stopTime = startTime + timeMinimum
     var currentTime = startTime
 
-    do {
-      run()
-      runs += 1
-      currentTime = Platform.currentTime
-    } while (currentTime < stopTime || runs < runsMinimum)
-
-    val elapsed = currentTime - startTime
-    1000.0 * elapsed / runs
+    case object Start
+    system.actorOf(Props(new Actor{
+      def receive = {
+        case Start =>
+          run(context.system, self)
+        case Done =>
+          runs += 1
+          currentTime = Platform.currentTime
+          if (currentTime < stopTime || runs < runsMinimum) {
+            run(context.system, self)
+          } else {
+            val elapsed = currentTime - startTime
+            f(1000.0 * elapsed / runs)
+            system.terminate()
+          }
+      }
+    })) ! Start
   }
 
   /** Prepare any data needed by the benchmark, but whose execution time
@@ -115,16 +129,17 @@ abstract class Benchmark extends js.JSApp {
    */
   def prefix: String = getClass().getName()
 
-  def warmUp(): Unit = {
-    runBenchmark(100, 2)
+  def warmUp(f: () => Unit): Unit = {
+    runBenchmark(100, 1)(_ => f())
   }
 
-  def report(): String = {
+  def report(f: String => Unit): Unit = {
     setUp()
-    warmUp()
-    val avg = runBenchmark(2000, 5)
-    tearDown()
-
-    s"$avg us"
+    warmUp(
+      () => runBenchmark(2000, 3)({avg: Double => {
+        tearDown()
+        f(s"$avg us")
+      }})
+    )
   }
 }

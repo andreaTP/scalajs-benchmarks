@@ -6,7 +6,8 @@ val projectSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultSettings: Seq[Setting[_]] = projectSettings ++ Seq(
-  scalaVersion := "2.11.8",
+  scalaVersion := "2.12.2",
+  crossScalaVersions  := Seq("2.12.2", "2.11.8"),
   scalacOptions ++= Seq(
       "-deprecation",
       "-unchecked",
@@ -37,71 +38,68 @@ lazy val common = crossProject.
     name := "Scala.js Benchmarks - Common",
     moduleName := "common"
   )
+  .jvmSettings(
+    libraryDependencies ++= Seq(
+      "com.typesafe.akka" %% "akka-actor" % "2.5.0"
+    )
+  )
+  .jsSettings(
+    libraryDependencies ++= Seq(
+      "org.akka-js" %%% "akkajsactor" % "1.2.5.0-SNAPSHOT"
+    )
+  )
 
 lazy val commonJVM = common.jvm
 lazy val commonJS = common.js
 
-lazy val deltablue = crossProject.crossType(CrossType.Pure).
+lazy val skynet = crossProject.crossType(CrossType.Pure).
   settings(defaultSettings: _*).
   jvmSettings(defaultJVMSettings: _*).
   jsSettings(defaultJSSettings: _*).
   settings(
-    name := "Scala.js Benchmarks - DeltaBlue",
-    moduleName := "deltablue"
+    name := "Akka.js Benchmarks - Skynet",
+    moduleName := "skynet"
   ).
   dependsOn(common)
 
-lazy val deltablueJVM = deltablue.jvm
-lazy val deltablueJS = deltablue.js
+lazy val skynetJVM = skynet.jvm
+lazy val skynetJS = skynet.js
 
-lazy val richards = crossProject.crossType(CrossType.Pure).
+lazy val chameneos = crossProject.crossType(CrossType.Pure).
   settings(defaultSettings: _*).
   jvmSettings(defaultJVMSettings: _*).
   jsSettings(defaultJSSettings: _*).
   settings(
-    name := "Scala.js Benchmarks - Richards",
-    moduleName := "richards"
+    name := "Akka.js Benchmarks - Chameneos",
+    moduleName := "chameneos"
   ).
   dependsOn(common)
 
-lazy val richardsJVM = richards.jvm
-lazy val richardsJS = richards.js
+lazy val chameneosJVM = chameneos.jvm
+lazy val chameneosJS = chameneos.js
 
-lazy val sudoku = crossProject.crossType(CrossType.Pure).
+lazy val pingpong = crossProject.crossType(CrossType.Pure).
   settings(defaultSettings: _*).
   jvmSettings(defaultJVMSettings: _*).
   jsSettings(defaultJSSettings: _*).
   settings(
-    name := "Scala.js Benchmarks - Sudoku",
-    moduleName := "sudoku"
+    name := "Akka.js Benchmarks - PingPong",
+    moduleName := "pingpong"
   ).
   dependsOn(common)
 
-lazy val sudokuJVM = sudoku.jvm
-lazy val sudokuJS = sudoku.js
+lazy val pingpongJVM = pingpong.jvm
+lazy val pingpongJS = pingpong.js
 
-lazy val tracer = crossProject.
+lazy val pipe = crossProject.crossType(CrossType.Pure).
   settings(defaultSettings: _*).
   jvmSettings(defaultJVMSettings: _*).
   jsSettings(defaultJSSettings: _*).
   settings(
-    name := "Scala.js Benchmarks - Tracer",
-    moduleName := "tracer"
+    name := "Akka.js Benchmarks - Pipe",
+    moduleName := "pipe"
   ).
   dependsOn(common)
 
-lazy val tracerJVM = tracer.jvm
-lazy val tracerJS = tracer.js
-
-lazy val sha512 = crossProject.crossType(CrossType.Pure).
-  settings(defaultSettings: _*).
-  jvmSettings(defaultJVMSettings: _*).
-  jsSettings(defaultJSSettings: _*).
-  settings(
-    name := "Scala.js Benchmarks - SHA-512",
-    moduleName := "sha512"
-  ).
-  dependsOn(common)
-
-lazy val sha512JVM = sha512.jvm
-lazy val sha512JS = sha512.js
+lazy val pipeJVM = pipe.jvm
+lazy val pipeJS = pipe.js

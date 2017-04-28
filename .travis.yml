@@ -1,12 +1,31 @@
 sudo: false
+
 language: scala
-script:
-  - sbt ++$TRAVIS_SCALA_VERSION richardsJVM/run richardsJS/run 'set scalaJSStage in Global := FullOptStage' richardsJS/run
-  - sbt ++$TRAVIS_SCALA_VERSION tracerJVM/run tracerJS/run 'set scalaJSStage in Global := FullOptStage' tracerJS/run
-  - sbt ++$TRAVIS_SCALA_VERSION deltablueJVM/run deltablueJS/run 'set scalaJSStage in Global := FullOptStage' deltablueJS/run
-  - sbt ++$TRAVIS_SCALA_VERSION sudokuJVM/run sudokuJS/run 'set scalaJSStage in Global := FullOptStage' sudokuJS/run
-  - sbt ++$TRAVIS_SCALA_VERSION sha512JVM/run sha512JS/run 'set scalaJSStage in Global := FullOptStage' sha512JS/run
+
 scala:
   - 2.11.8
+  - 2.12.2
+
 jdk:
   - oraclejdk8
+
+env:
+  - TRAVIS_NODE_VERSION="7.6.0"
+
+install:
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - npm install
+
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION pipeJVM/run pipeJS/run 'set scalaJSStage in Global := FullOptStage' pipeJS/run
+  - sbt ++$TRAVIS_SCALA_VERSION pingpongJVM/run pingpongJS/run 'set scalaJSStage in Global := FullOptStage' pingpongJS/run
+  - sbt ++$TRAVIS_SCALA_VERSION chameneosJVM/run chameneosJS/run 'set scalaJSStage in Global := FullOptStage' chameneosJS/run
+  - sbt ++$TRAVIS_SCALA_VERSION skynetJVM/run skynetJS/run 'set scalaJSStage in Global := FullOptStage' skynetJS/run
+  # Tricks to avoid unnecessary cache updates, from
+  # http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
+  - find $HOME/.sbt -name "*.lock" | xargs rm
+  - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
+cache:
+  directories:
+    - $HOME/.ivy2/cache
+    - $HOME/.sbt/boot/
