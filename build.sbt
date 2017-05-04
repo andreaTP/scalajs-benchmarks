@@ -22,7 +22,7 @@ val defaultJVMSettings: Seq[Setting[_]] = Seq(
 
 val defaultJSSettings: Seq[Setting[_]] = Seq(
   scalaJSSemantics ~= { _.withAsInstanceOfs(Unchecked) },
-  persistLauncher := true
+  scalaJSUseMainModuleInitializer := true
 )
 
 lazy val parent = project.in(file(".")).

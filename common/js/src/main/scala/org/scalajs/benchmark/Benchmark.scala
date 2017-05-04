@@ -84,7 +84,15 @@ abstract class Benchmark extends js.JSApp {
    *  the average execution time in microseconds.
    */
   def runBenchmark(timeMinimum: Long, runsMinimum: Int)(f: Double => Unit): Unit = {
-    val system = ActorSystem()
+    val conf =
+      com.typesafe.config.ConfigFactory
+        .parseString("""
+          akka {
+            akka.log-dead-letters = 0
+            akka.log-dead-letters-during-shutdown = off
+          }""")
+        .withFallback(akkajs.Config.default)
+    val system = ActorSystem(prefix, conf)
 
     var runs = 0
     val startTime = Platform.currentTime
@@ -130,7 +138,7 @@ abstract class Benchmark extends js.JSApp {
   def prefix: String = getClass().getName()
 
   def warmUp(f: () => Unit): Unit = {
-    runBenchmark(100, 1)(_ => f())
+    runBenchmark(100, 5)(_ => f())
   }
 
   def report(f: String => Unit): Unit = {
