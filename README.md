@@ -11,7 +11,7 @@ Some results on my machine (in us):
 |2.12 Fast     |19631000	|8536000  |
 |2.12 Full     |16915333	|7208333  |
 
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/dBhrrQ/akkajs_perf_imp.png" alt="akkajs_perf_imp" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>online upload photos</a><br />
+<img src="https://image.ibb.co/dBhrrQ/akkajs_perf_imp.png" alt="akkajs_perf_imp" border="0">
 
 For fun I checked against GraalVM:
 
@@ -22,7 +22,7 @@ For fun I checked against GraalVM:
 |2.12 Fast	      |8536000|6147333|
 |2.12 Full	      |7208333|5343666|
 
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/b4TmQk/akkajs_perf_graal.png" alt="akkajs_perf_graal" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>online upload photos</a><br />
+<img src="https://image.ibb.co/b4TmQk/akkajs_perf_graal.png" alt="akkajs_perf_graal" border="0">
 
 # Scala.js Benchmarks
 
