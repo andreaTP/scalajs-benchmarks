@@ -1,4 +1,4 @@
-#Akka.Js Benchmarks
+# Akka.Js Benchmarks
 
 all the basic infrastructure come from original scalajs-benchmarks project.
 
