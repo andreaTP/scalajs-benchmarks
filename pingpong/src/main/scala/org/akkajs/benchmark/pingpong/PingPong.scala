@@ -25,7 +25,7 @@ object PingPong extends org.scalajs.benchmark.Benchmark {
   	inspired from:
   	https://github.com/shamsmahmood/savina
   */
-  
+
   case object Ping
   case object Pong
 

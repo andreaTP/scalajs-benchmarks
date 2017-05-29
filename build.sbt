@@ -40,12 +40,12 @@ lazy val common = crossProject.
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.5.1"
+      "com.typesafe.akka" %% "akka-actor" % "2.5.2"
     )
   )
   .jsSettings(
     libraryDependencies ++= Seq(
-      "org.akka-js" %%% "akkajsactor" % "1.2.5.1"
+      "org.akka-js" %%% "akkajsactor" % "1.2.5.2"
     )
   )
 

@@ -2,6 +2,27 @@
 
 all the basic infrastructure come from original scalajs-benchmarks project.
 
+Updated result with 1.2.5.2 (all benchs are with Scala 2.12 on Node, us):
+
+|PingPong|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||2476333|2317666|3923|1762|
+
+|Chameneos|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||145857|136133|2061|183|
+
+|Pipe|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||1379666|1235000|29000|3878|
+
+|Skynet|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|
+||16915333|7208333|3066000|75825
+
+
+## Historical results
+
 Some results on my machine (in us):
 
 |SKYNET / Node |	1.2.5.0 |	1.2.5.1 |

@@ -112,7 +112,6 @@ abstract class Benchmark extends js.JSApp {
           } else {
             val elapsed = currentTime - startTime
             f(1000.0 * elapsed / runs)
-            system.terminate()
           }
       }
     })) ! Start
@@ -144,7 +143,7 @@ abstract class Benchmark extends js.JSApp {
   def report(f: String => Unit): Unit = {
     setUp()
     warmUp(
-      () => runBenchmark(2000, 3)({avg: Double => {
+      () => runBenchmark(100, 3)({avg: Double => {
         tearDown()
         f(s"$avg us")
       }})
