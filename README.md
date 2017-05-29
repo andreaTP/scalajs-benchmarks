@@ -18,7 +18,8 @@ Updated result with 1.2.5.2 (all benchs are with Scala 2.12 on Node, us):
 
 |Skynet|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
 |:-------:|:-----:|:-----:|:-----:|
-||16915333|7208333|3066000|70231|
+||16915333|7208333|3066000|70231
+
 
 
 #### Historical results
