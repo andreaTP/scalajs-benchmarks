@@ -40,12 +40,12 @@ lazy val common = crossProject.
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.5.2"
+      "com.typesafe.akka" %% "akka-actor" % "2.5.4"
     )
   )
   .jsSettings(
     libraryDependencies ++= Seq(
-      "org.akka-js" %%% "akkajsactor" % "1.2.5.2"
+      "org.akka-js" %%% "akkajsactor" % "1.2.5.4"
     )
   )
 
@@ -85,6 +85,12 @@ lazy val pingpong = crossProject.crossType(CrossType.Pure).
   settings(
     name := "Akka.js Benchmarks - PingPong",
     moduleName := "pingpong"
+  ).
+  jsSettings(
+    //scalaJSOptimizerOptions in (Compile, fullOptJS) ~= {
+      //_.withUseClosureCompiler(false)
+      //_.withDisableOptimizer(true)
+    //}
   ).
   dependsOn(common)
 

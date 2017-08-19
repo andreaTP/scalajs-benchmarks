@@ -137,13 +137,17 @@ abstract class Benchmark extends js.JSApp {
   def prefix: String = getClass().getName()
 
   def warmUp(f: () => Unit): Unit = {
-    runBenchmark(100, 5)(_ => f())
+    //runBenchmark(100, 5)(_ => f())
+    // JVM settings to test Turbofan
+    runBenchmark(3000, 5)(_ => f())
   }
 
   def report(f: String => Unit): Unit = {
     setUp()
     warmUp(
-      () => runBenchmark(100, 3)({avg: Double => {
+      //() => runBenchmark(100, 3)({avg: Double => {
+      // JVM settings to test Turbofan
+      () => runBenchmark(20000, 10)({avg: Double => {
         tearDown()
         f(s"$avg us")
       }})
