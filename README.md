@@ -2,7 +2,35 @@
 
 all the basic infrastructure come from original scalajs-benchmarks project.
 
-Updated result with 1.2.5.2 (all benchs are with Scala 2.12 on Node, us):
+## Last results
+
+Akka.Js 1.2.5.4, Scala 2.12.2 (always in us).
+Akka JVM is 2.5.4 with Scala 2.12.2 too.
+
+Chameneos: 488.6749578517849 us
+PingPong: 2484.9049571375326 us
+Pipe: 18904.53686200378 us
+Skynet: 5117900 us
+
+|PingPong|Node 7.10.1|Node 8.4.0|JVM|
+|:-------:|:-----:|:-----:|:-:|
+||2654|2484|3923|1160|
+
+|Chameneos|Node 7.10.1|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||541|488|156|
+
+|Pipe|Node 7.10.1|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||24814|18904|3015|
+
+|Skynet|Node 7.10.1|1.2.5.1|1.2.5.2|JVM|
+|:-------:|:-----:|:-----:|:-----:|:-:|
+||3020600|5117900|69524|
+
+#### Historical results
+
+Updated result with 1.2.5.2 (all benchs are with Scala 2.12 on Node 7.3.0, us):
 
 |PingPong|1.2.5.0|1.2.5.1|1.2.5.2|JVM|
 |:-------:|:-----:|:-----:|:-----:|:-:|
@@ -20,9 +48,6 @@ Updated result with 1.2.5.2 (all benchs are with Scala 2.12 on Node, us):
 |:-------:|:-----:|:-----:|:-----:|:-:|
 ||16915333|7208333|3066000|70231|
 
-
-
-#### Historical results
 
 Some results on my machine (in us):
 
