@@ -10,8 +10,6 @@ sbt -mem 8048 \
     'pipeJS/fastOptJS' 'pipeJS/fullOptJS' \
     'skynetJS/fastOptJS' 'skynetJS/fullOptJS'
 
-    #    'skynetJS/clean' \
-    #    'skynetJS/fastOptJS' 'skynetJS/fullOptJS'
 echo "node fast"
 echo "report" > nodeFast.log
 node chameneos/.js/target/scala-2.12/chameneos-fastopt.js >> nodeFast.log
