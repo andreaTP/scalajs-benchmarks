@@ -7,21 +7,21 @@ all the basic infrastructure come from original scalajs-benchmarks project.
 Akka.Js 1.2.5.6, Scala 2.12.2 (always in us).
 Akka JVM is 2.5.6 with Scala 2.12.2 too.
 
-|PingPong|Node 8.6.0|JVM|
-|:-------:|:-----:|:-:|
-||2739|1143|
+|PingPong|Node 7.10.1|Node 8.6.0|JVM|
+|:-------:|:-----:|:-----:|:-:|
+||2739|2507|1143|
 
-|Chameneos|Node 8.6.0|JVM|
-|:-------:|:-----:|:-:|
-||579|152|
+|Chameneos|Node 7.10.1|Node 8.6.0|JVM|
+|:-------:|:-----:|:-----:|:-:|
+||579|491|152|
 
-|Pipe|Node 8.6.0|JVM|
-|:-------:|:-----:|:-:|
-||24354|2972|
+|Pipe|Node 7.10.1|Node 8.6.0|JVM|
+|:-------:|:-----:|:-----:|:-:|
+||24354|19074|2972|
 
-|Skynet|Node 8.6.0|JVM|
-|:-------:|:-----:|:-:|
-||3040100|70232|
+|Skynet|Node 7.10.1|Node 8.6.0|JVM|
+|:-------:|:-----:|:-----:|:-:|
+||3040100|4721600|70232|
 
 #### Historical results
 
