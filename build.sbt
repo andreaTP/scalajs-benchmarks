@@ -6,8 +6,8 @@ val projectSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultSettings: Seq[Setting[_]] = projectSettings ++ Seq(
-  scalaVersion := "2.12.2",
-  crossScalaVersions  := Seq("2.12.2", "2.11.8"),
+  scalaVersion := "2.12.4",
+  crossScalaVersions  := Seq("2.12.4", "2.11.11"),
   scalacOptions ++= Seq(
       "-deprecation",
       "-unchecked",
@@ -40,12 +40,14 @@ lazy val common = crossProject.
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-actor" % "2.5.6"
+      // "com.typesafe.akka" %% "akka-actor" % "2.5.6"
+      "com.typesafe.akka" %% "akka-actor" % "2.5.12"
+      // "com.typesafe.akka" %% "akka-actor" % "2.5-SNAPSHOT"
     )
   )
   .jsSettings(
     libraryDependencies ++= Seq(
-      "org.akka-js" %%% "akkajsactor" % "1.2.5.6"
+      "org.akka-js" %%% "akkajsactor" % "1.2.5.12-PERF"
     )
   )
 

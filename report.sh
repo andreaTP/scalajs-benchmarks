@@ -24,16 +24,16 @@ node pingpong/.js/target/scala-2.12/pingpong-opt.js >> nodeFull.log
 node pipe/.js/target/scala-2.12/pipe-opt.js >> nodeFull.log
 node skynet/.js/target/scala-2.12/skynet-opt.js >> nodeFull.log
 
-#echo "graal fast"
-#echo "report" > graalFast.log
-#~/graalvm/bin/node chameneos/.js/target/scala-2.12/chameneos-fastopt.js >> graalFast.log
-#~/graalvm/bin/node pingpong/.js/target/scala-2.12/pingpong-fastopt.js >> graalFast.log
-#~/graalvm/bin/node pipe/.js/target/scala-2.12/pipe-fastopt.js >> graalFast.log
-#~/graalvm/bin/node skynet/.js/target/scala-2.12/skynet-fastopt.js >> graalFast.log
+echo "graal fast"
+echo "report" > graalFast.log
+~/graalvm/bin/node chameneos/.js/target/scala-2.12/chameneos-fastopt.js >> graalFast.log
+~/graalvm/bin/node pingpong/.js/target/scala-2.12/pingpong-fastopt.js >> graalFast.log
+~/graalvm/bin/node pipe/.js/target/scala-2.12/pipe-fastopt.js >> graalFast.log
+~/graalvm/bin/node skynet/.js/target/scala-2.12/skynet-fastopt.js >> graalFast.log
 
-#echo "graal full"
-#echo "report" > graalFull.log
-#~/graalvm/bin/node chameneos/.js/target/scala-2.12/chameneos-opt.js >> graalFull.log
-#~/graalvm/bin/node pingpong/.js/target/scala-2.12/pingpong-opt.js >> graalFull.log
-#~/graalvm/bin/node pipe/.js/target/scala-2.12/pipe-opt.js >> graalFull.log
-#~/graalvm/bin/node skynet/.js/target/scala-2.12/skynet-opt.js >> graalFull.log
+echo "graal full"
+echo "report" > graalFull.log
+~/graalvm/bin/node chameneos/.js/target/scala-2.12/chameneos-opt.js >> graalFull.log
+~/graalvm/bin/node pingpong/.js/target/scala-2.12/pingpong-opt.js >> graalFull.log
+~/graalvm/bin/node pipe/.js/target/scala-2.12/pipe-opt.js >> graalFull.log
+~/graalvm/bin/node skynet/.js/target/scala-2.12/skynet-opt.js >> graalFull.log
