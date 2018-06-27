@@ -6,13 +6,12 @@ val projectSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultSettings: Seq[Setting[_]] = projectSettings ++ Seq(
-  scalaVersion := "2.12.4",
-  crossScalaVersions  := Seq("2.12.4", "2.11.11"),
+  scalaVersion := "2.12.6",
   scalacOptions ++= Seq(
-      "-deprecation",
-      "-unchecked",
-      "-feature",
-      "-encoding", "utf8"
+    "-deprecation",
+    "-unchecked",
+    "-feature",
+    "-encoding", "utf8"
   )
 )
 
@@ -41,13 +40,13 @@ lazy val common = crossProject.
   .jvmSettings(
     libraryDependencies ++= Seq(
       // "com.typesafe.akka" %% "akka-actor" % "2.5.6"
-      "com.typesafe.akka" %% "akka-actor" % "2.5.12"
+      "com.typesafe.akka" %% "akka-actor" % "2.5.13"
       // "com.typesafe.akka" %% "akka-actor" % "2.5-SNAPSHOT"
     )
   )
   .jsSettings(
     libraryDependencies ++= Seq(
-      "org.akka-js" %%% "akkajsactor" % "1.2.5.12-PERF"
+      "org.akka-js" %%% "akkajsactor" % "1.2.5.13"
     )
   )
 
@@ -90,8 +89,8 @@ lazy val pingpong = crossProject.crossType(CrossType.Pure).
   ).
   jsSettings(
     //scalaJSOptimizerOptions in (Compile, fullOptJS) ~= {
-      //_.withUseClosureCompiler(false)
-      //_.withDisableOptimizer(true)
+    //_.withUseClosureCompiler(false)
+    //_.withDisableOptimizer(true)
     //}
   ).
   dependsOn(common)
