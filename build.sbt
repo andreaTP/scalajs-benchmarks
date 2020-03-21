@@ -1,4 +1,4 @@
-import org.scalajs.core.tools.sem.CheckedBehavior.Unchecked
+// import org.scalajs.core.tools.sem.CheckedBehavior.Unchecked
 
 val projectSettings: Seq[Setting[_]] = Seq(
   organization := "scalajs-benchmarks",
@@ -6,7 +6,7 @@ val projectSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultSettings: Seq[Setting[_]] = projectSettings ++ Seq(
-  scalaVersion := "2.12.6",
+  scalaVersion := "2.13.1",
   scalacOptions ++= Seq(
     "-deprecation",
     "-unchecked",
@@ -20,7 +20,7 @@ val defaultJVMSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultJSSettings: Seq[Setting[_]] = Seq(
-  scalaJSSemantics ~= { _.withAsInstanceOfs(Unchecked) },
+  // scalaJSSemantics ~= { _.withAsInstanceOfs(Unchecked) },
   scalaJSUseMainModuleInitializer := true
 )
 
@@ -39,14 +39,12 @@ lazy val common = crossProject.
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      // "com.typesafe.akka" %% "akka-actor" % "2.5.6"
-      "com.typesafe.akka" %% "akka-actor" % "2.5.13"
-      // "com.typesafe.akka" %% "akka-actor" % "2.5-SNAPSHOT"
+      "com.typesafe.akka" %% "akka-actor" % "2.6.3"
     )
   )
   .jsSettings(
     libraryDependencies ++= Seq(
-      "org.akka-js" %%% "akkajsactor" % "1.2.5.13"
+      "org.akka-js" %%% "akkajsactor" % "2.2.6.3"
     )
   )
 

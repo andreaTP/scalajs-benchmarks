@@ -12,7 +12,7 @@ import scala.compat.Platform
 import scala.scalajs.js
 import js.annotation.JSExport
 
-import org.scalajs.benchmark.dom._
+// import org.scalajs.benchmark.dom._
 
 import akka.actor._
 
@@ -27,49 +27,12 @@ case object Done
  *
  *  @author Iulian Dragos, Burak Emir
  */
-abstract class Benchmark extends js.JSApp {
+abstract class Benchmark {
 
-  def main(): Unit = {
+  def main(args: Array[String]): Unit = {
     report({status: String => {
       println(s"$prefix: $status")
     }})
-  }
-
-  @JSExport
-  def mainHTML(): Unit = {
-    import DOM.document
-
-    document.title = prefix
-
-    val body = document.body
-
-    val title = document.createElement("h1")
-    title.textContent = prefix
-    body.appendChild(title)
-
-    val runButton =
-      document.createElement("button").asInstanceOf[HTMLButtonElement]
-    runButton.textContent = "Run benchmarks"
-    body.appendChild(runButton)
-
-    val statusText = document.createElement("p")
-    body.appendChild(statusText)
-
-    runButton.onclick = { () =>
-      runButton.enabled = false
-      statusText.textContent = "Running ..."
-
-      js.timers.setTimeout(10) {
-        try {
-          report(status => {
-            statusText.textContent = status
-            runButton.enabled = true
-          })
-        } catch {
-          case th: Throwable => th.toString()
-        }
-      }
-    }
   }
 
   /** This method should be implemented by the concrete benchmark.
@@ -100,7 +63,7 @@ abstract class Benchmark extends js.JSApp {
     var currentTime = startTime
 
     case object Start
-    system.actorOf(Props(new Actor{
+    val controlActor = system.actorOf(Props(new Actor{
       def receive = {
         case Start =>
           run(context.system, self)
