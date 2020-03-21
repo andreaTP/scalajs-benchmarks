@@ -1,4 +1,3 @@
-// import org.scalajs.core.tools.sem.CheckedBehavior.Unchecked
 
 val projectSettings: Seq[Setting[_]] = Seq(
   organization := "scalajs-benchmarks",
@@ -20,7 +19,6 @@ val defaultJVMSettings: Seq[Setting[_]] = Seq(
 )
 
 val defaultJSSettings: Seq[Setting[_]] = Seq(
-  // scalaJSSemantics ~= { _.withAsInstanceOfs(Unchecked) },
   scalaJSUseMainModuleInitializer := true
 )
 
